@@ -1,0 +1,289 @@
+﻿
+
+.breadcrumb-wrp {
+    float: left;
+    width: 1080px;
+    height: 40px;
+}
+.product-detail-container {
+    float: left;
+    width: 1080px;
+    min-height: 500px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.product-rating-container {
+    float: left;
+    width: 1080px;
+    min-height: 340px;
+}
+
+.product-gallery-wrp {
+    float: left;
+    width: 486px;
+    margin-right: 30px;
+    height: 500px;
+}
+.slick-slider-l {
+    float: left;
+    width: 72px;
+    margin-right: 22px;
+    height: 500px;
+}
+.slick-slider-r {
+    float: left;
+    width: 392px;
+    height: 500px;
+}
+.slick-slider-r img{
+    width:100%;
+    height:100%;
+}
+.product-gallery-items {
+    float: left;
+    width: 72px;
+    height: 92px;
+    margin-bottom: 10px;
+}
+.product-gallery-items img
+{
+    height:100%;
+    width:100%;
+}
+.product-gallery-items:last-child{
+    margin-bottom: 0 !important;
+}
+
+.product-detail-wrp {
+    float: left;
+    width: 564px;
+    min-height: 500px;
+}
+.p-detail-left{
+    float: left;
+    width: 240px;
+    padding:0 20px;
+}
+.p-detail-right{
+    float:left;
+    width:324px;
+    padding:0 12px;
+}
+
+
+.checked-star {
+  color: orange;
+}
+.p-d-rate{
+    float:left;
+    height:40px;
+    width:100%;
+}
+.p-d-rate span{
+    font-size:14px;
+}
+.p-d-price-wrp{
+    float:left;
+    width:100%;
+    height:90px;
+    margin-bottom:12px;
+}
+.p-d-price-discount{
+    float:left;
+    width:100%;
+    height:30px;
+}
+.p-d-price-discount-percent{
+    float:left;
+    width:60px;
+    height:100%;
+    font-size:17px;
+    padding-top:3px;
+    color:#33cc33;
+    text-align:center;
+}
+.p-d-price-discount-oldprice{
+    float:left;
+    width:120px;
+    height:100%;
+    text-align:center;
+    font-size:20px;
+    color:#ff3333;
+}
+.p-d-price-discount-oldprice span:first-child{text-decoration: line-through;}
+.p-d-price{
+    float:left;
+    width:100%;
+    height:60px;
+    font-size:38px;
+    color:#5c5cd6;
+}
+.p-d-ring-fav-wrp{
+    float:left;
+    width:100%;
+    height:72px;
+}
+.p-d-ring{
+    float:left;
+    height:100%;
+    width:100px;
+    padding:6px;
+}
+.p-d-ring img{
+    width:100%;
+    height:100%;
+    cursor:pointer;
+}
+.p-d-fav{
+    float:left;
+    height:100%;
+    width:100px;
+    padding:6px;
+}
+.p-d-fav img{
+    width:100%;
+    height:100%;
+    cursor:pointer;
+}
+.p-d-addtobasket{
+    float:left;
+    height:50px;
+    width:100%;
+    border:1px solid #ebebeb;
+    margin-bottom:16px;
+    border-radius:6px;
+    font-size:22px;
+    transition:all 0.2s;
+}
+.p-d-addtobasket:hover{
+    background-color:#ebebeb;
+}
+.p-d-addtobasket-text{
+    float: left;
+    width: 100%;
+    height: 28px;
+    margin: 10px 0;
+    text-align: center;
+}
+.p-d-ucretsizkargo{
+    float:left;
+    height:40px;
+    width:100%;
+}
+.p-d-ucretsizkargo img{
+    height:40px;
+    width:auto;
+}
+
+
+.p-d-top{
+    float:left;
+    width:100%;
+    height:82px;
+    margin-bottom:22px;
+}
+.p-d-header{
+    float:left;
+    width:100%;
+    height:32px;
+    font-size:24px;
+}
+.p-d-subheader{
+    float:left;
+    width:100%;
+    height:26px;
+    font-size:18px;
+}
+.p-d-brand{
+    float:left;
+    width:100%;
+    height:24px;
+    font-size:16px;
+}
+.p-d-about-title{
+    float:left;
+    width:100%;
+    height:40px;
+    font-size:30px;
+}
+.p-d-about-content{
+    float:left;
+    width:100%;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rating-title {
+    float: left;
+    width: 100%;
+    min-height: 30px;
+    margin-bottom: 4px;
+}
+.product-rate {
+    float: left;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    border: 1px solid #ebebeb;
+}
+.comment-title {
+    float: left;
+    width: 100%;
+    min-height: 30px;
+    margin-bottom: 4px;
+}
+.product-comments {
+    float: left;
+    width: 100%;
+    min-height: 300px;
+    border: 1px solid #ebebeb;
+}
+
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}

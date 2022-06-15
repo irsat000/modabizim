@@ -1,0 +1,573 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="maintemplate.master.cs"
+    Inherits="maintemplate" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>Modabizim | Seçim Sizin</title>
+    <link rel="icon" href="img/icon.png" type="image/x-icon" />
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="bootstrap-441/css/bootstrap.min.css" />
+    <script type="text/javascript" src="bootstrap-441/js/bootstrap.min.js"></script>
+    <!--https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/headerstyle.css" />
+    <link rel="stylesheet" type="text/css" href="css/footerstyle.css" />
+    <link rel="stylesheet" type="text/css" href="css/modal_login.css" />
+    <link rel="stylesheet" type="text/css" href="css/modal_register.css" />
+    <!--Burası şablonda değişecek yerler-->
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <!---->
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <!--Giriş-->
+        <div class="login-modal" id="login-modal">
+            <div class="modal-login-form modal-animate">
+                <div class="login-modal-dialog">
+                    <span onclick="document.getElementById('login-modal').style.display='none'" class="close-login-modal modal-animate"
+                        title="Pencereyi kapat">&times;</span>
+                    <div class="loginmodal-container">
+                        <h1>
+                            Giriş Yap</h1>
+                        <br />
+                        <asp:TextBox ID="login_username" runat="server" placeholder="Kullanıcı Adı"></asp:TextBox>
+                        <asp:TextBox ID="login_password" runat="server" placeholder="Şifre" TextMode="Password"></asp:TextBox>
+                        <asp:Button ID="login_button" runat="server" class="login loginmodal-submit" Text="Giriş" onclick="login_button_Click" />
+                        <div class="login-help">
+                            <a href="#">Şifremi unuttum</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Kayıt-->
+        <div class="register-modal" id="register-modal">
+            <div class="modal-register-form modal-animate">
+                <div class="register-modal-dialog">
+                    <span onclick="document.getElementById('register-modal').style.display='none'" class="close-register-modal modal-animate"
+                        title="Pencereyi kapat">&times;</span>
+                    <div class="registermodal-container">
+                        <h1>
+                            Hesap Oluştur</h1>
+                        <br />
+                        <asp:TextBox ID="register_username" runat="server" placeholder="Kullanıcı Adı"></asp:TextBox>
+                        <asp:TextBox ID="register_password" runat="server" TextMode="Password" placeholder="Şifre"></asp:TextBox>
+                        <asp:TextBox ID="register_passwordagain" runat="server" TextMode="Password" placeholder="Şifre Tekrar"></asp:TextBox>
+                        <asp:TextBox ID="register_email" runat="server" placeholder="E-Posta"></asp:TextBox>
+                        <div class="gender">
+                            <div class="register-gender-align">
+                                <asp:RadioButton ID="register_male" runat="server" value="1" GroupName="register_gender" />
+                                <label for="register_male" class="radio">
+                                    <p class="gender-text">
+                                        Erkek</p>
+                                </label>
+                                <asp:RadioButton ID="register_female" runat="server" value="0" GroupName="register_gender" />
+                                <label for="register_female" class="radio">
+                                    <p class="gender-text">
+                                        Kadın</p>
+                                </label>
+                            </div>
+                        </div>
+                        <asp:Button ID="register_button" runat="server" class="register registermodal-submit" Text="Kayıt Ol" onclick="register_button_Click" />
+                        <div class="register-help">
+                            <p>
+                                Kayıt ol'a basarak <a href="#">koşullar</a>'ımızı ve <a href="#">gizlilik sözleşmesi</a>'ni
+                                kabul etmiş oluyorsunuz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="layout-container-foreach top-ad">
+		    <div class="top-ad-wrapper">
+			    <h1>REKLAM ALANI</h1>
+		    </div>
+	    </div>-->
+        <header class="layout-container-foreach" id="header-itself">
+		    <div class="header-align">
+			    <div class="header-container-full">
+				    <div class="header-container">
+					    <div class="header-logo">
+						    <div class="logo-img-container">
+							    <a href="Default.aspx"><img src="img/logo.png" class="logo-img" /></a>
+						    </div>
+					    </div>
+					    <div class="search-field">
+						    <div class="searchbox-container">
+							    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+								    <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40">
+									    <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"
+									    fill-rule="evenodd" />
+								    </symbol>
+								    <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-clear-2" viewBox="0 0 20 20">
+									    <path d="M8.96 10L.52 1.562 0 1.042 1.04 0l.522.52L10 8.96 18.438.52l.52-.52L20 1.04l-.52.522L11.04 10l8.44 8.438.52.52L18.96 20l-.522-.52L10 11.04l-8.438 8.44-.52.52L0 18.96l.52-.522L8.96 10z" fill-rule="evenodd" />
+								    </symbol>
+							    </svg>
+							    <div class="searchbox sbx-medium">
+							      <div role="search" class="sbx-medium__wrapper">
+								    <input type="search" name="search" placeholder="Sitede ara" autocomplete="off" class="sbx-medium__input" />
+								    <button type="submit" title="Arama yap" class="sbx-medium__submit">
+								      <svg role="img" aria-label="Search">
+									    <use xlink:href="#sbx-icon-search-13"></use>
+								      </svg>
+								    </button>
+								    <button type="reset" title="Temizle" class="sbx-medium__reset">
+								      <svg role="img" aria-label="Reset">
+									    <use xlink:href="#sbx-icon-clear-2"></use>
+								      </svg>
+								    </button>
+							      </div>
+							    </div>
+						    </div>
+					    </div>
+					    <div class="header-tools">
+                            <asp:Panel ID="header_login_button" class="login-container" runat="server" Visible="True">
+							    <div class="login-button" id="login-btn-modal">
+								    <div class="login-content-container">
+									    <div class="login-text-container">
+										    <div class="login-text">
+											    <a class="login-link">Giriş Yap</a>
+										    </div>
+									    </div>
+								    </div>
+							    </div>
+                            </asp:Panel>
+                            <asp:Panel ID="header_register_button" class="register-container" runat="server" Visible="True">
+							    <div class="register-button" id="register-btn-modal">
+								    <div class="register-text">
+									    <div class="register-text-align">
+										    <div class="register-text-div"><a class="register-link">Kayıt Ol</a></div>
+									    </div>
+								    </div>
+							    </div>
+                            </asp:Panel>
+                            <asp:Panel ID="header_profile_button" class="profile-container" runat="server" Visible="False">
+                                <div class="profile-button">
+                                    <div class="profile-button-text">
+                                        <span>
+                                            Hesabım
+                                        </span>
+                                    </div>
+                                    <ul class="profile-dropdown">
+                                        <li><a href="#">Profil</a></li>
+                                        <li><a href="#">Favoriler</a></li>
+                                        <li><a href="#">Link 3</a></li>
+                                        <li><asp:LinkButton ID="hesapcikis" onclick="hesapcikis_Click" runat="server">Çıkış Yap</asp:LinkButton></li>
+                                    </ul>
+                                </div>
+                            </asp:Panel>
+						    <div class="basket-container">
+							    <div class="shoppingbasket-button">
+								    <a href="ProductBasket.aspx"><img src="img/basket.png" class="basket-icon" />
+                                      <%if (Session["sepet"] != null)
+                                        {%>
+		                                    <span class="basketitemnumber"><%Response.Write(((ArrayList)Session["sepet"]).Count);%></span>
+	                                  <%}%>
+                                    </a>
+							    </div>
+						    </div>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+		    <div class="header-align-2">
+			    <nav class="ust-navmenu-full">
+				    <div class="navmenu-align">
+					    <ul class="nav-menu-list">
+						    <li class="navmenu-li nav-yeni"><a href="#" class="nav-menu-links">YENİLER</a>
+						        <div class="nav-yeni-dropdown">
+                                    <div class="column-list-container navyenidd-column">
+                                        <ul>
+                                            <li>Elbiseler</li>
+                                            <li>Tunikler</li>
+                                            <li>Abiyeler</li>
+                                            <li>Kaban-Manto</li>
+                                            <li>Kap-Pardesüler</li>
+                                            <li>Trikolar</li>
+                                            <li>Pantolonlar</li>
+                                            <li>Etekler</li>
+                                            <li>Mayolar</li>
+                                            <li>Ayakkabılar</li>
+                                            <li>Çantalar</li>
+                                            <li>Şallar</li>
+                                            <li>Eşarplar</li>
+                                            <li>Bone şallar</li>
+                                            <li>Hazır türban</li>
+                                            <li>Kozmetik ürünler</li>
+                                            <li>Çocuk giyim</li>
+                                            <li>Bebek giyim</li>
+                                        </ul>
+                                    </div>
+                                </div>
+						    </li>
+                            <li class="navmenu-li"><a href="#" class="nav-menu-links navmenu-outlet">OUTLET</a></li>
+						    <li class="navmenu-li"><a href="ProductSale.aspx?anakateno=1" class="nav-menu-links">Giyim</a>
+							    <div class="nav-dropdown"><div class="nav-dropdown-align">
+							    <!--|-->
+							    <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=1" class="column-list-headers">Elbise</a>
+                                    <ul>
+                                        <%ArrayList elbisealtkateler = new AltkategoriDao().tumaltkategoriler(1);
+                                          foreach (Altkategori gelenaltkateler in elbisealtkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                    <a href="ProductSale.aspx?anakateno=2" class="column-list-headers">Ev Giyim</a><ul>
+                                    <ul>
+                                        <%ArrayList evgiyimaltkateler = new AltkategoriDao().tumaltkategoriler(2);
+                                          foreach (Altkategori gelenaltkateler in evgiyimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+							
+                                <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=3" class="column-list-headers">Üst Giyim</a>
+                                    <ul>
+                                        <%ArrayList ustgiyimaltkateler = new AltkategoriDao().tumaltkategoriler(3);
+                                          foreach (Altkategori gelenaltkateler in ustgiyimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+							    <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=4" class="column-list-headers">İç Giyim</a>
+                                    <ul>
+                                        <%ArrayList icgiyimaltkateler = new AltkategoriDao().tumaltkategoriler(4);
+                                          foreach (Altkategori gelenaltkateler in icgiyimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                    <a href="ProductSale.aspx?anakateno=5" class="column-list-headers">Alt Giyim</a>
+                                    <ul>
+                                        <%ArrayList altgiyimaltkateler = new AltkategoriDao().tumaltkategoriler(5);
+                                          foreach (Altkategori gelenaltkateler in altgiyimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+							    <div class="column-list-container"><div class="dd-ad-wrapper-top"><img src="img/dropdownads/dd-reklamver.png" /></div><div class="dd-ad-wrapper-bottom"><img src="img/dropdownads/dd-reklamver.png" /></div></div>
+							    <!--|-->
+							    </div></div>
+						    </li>
+						    <li class="navmenu-li"><a href="ProductSale.aspx?anakateno=6" class="nav-menu-links">Dış & Spor</a>
+							    <div class="nav-dropdown"><div class="nav-dropdown-align">
+							    <!--|-->
+							    <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=6" class="column-list-headers">Dış Giyim</a>
+                                    <ul>
+                                        <%ArrayList disgiyimaltkateler = new AltkategoriDao().tumaltkategoriler(6);
+                                          foreach (Altkategori gelenaltkateler in disgiyimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=7" class="column-list-headers">Spor Giyim</a>
+                                    <ul>
+                                        <%ArrayList sporgiyimaltkateler = new AltkategoriDao().tumaltkategoriler(7);
+                                          foreach (Altkategori gelenaltkateler in sporgiyimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container"><div class="dd-ad-wrapper-top"><img src="img/dropdownads/dd-reklamver.png" /></div><div class="dd-ad-wrapper-bottom"><img src="img/dropdownads/dd-reklamver.png" /></div></div>
+							    <div class="column-list-container"><div class="dd-longad-wrapper"><img src="img/dropdownads/dd-reklamver-uzun.png" /></div></div>
+							    <!--|-->
+							    </div></div>
+						    </li>
+						    <li class="navmenu-li"><a href="ProductSale.aspx?anakateno=8" class="nav-menu-links">Abiye & Başörtü</a>
+							    <div class="nav-dropdown"><div class="nav-dropdown-align">
+							    <!--|-->
+							    <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=8" class="column-list-headers">Abiye</a>
+                                    <ul>
+                                        <%ArrayList abiyealtkateler = new AltkategoriDao().tumaltkategoriler(8);
+                                          foreach (Altkategori gelenaltkateler in abiyealtkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=9" class="column-list-headers">Başörtüsü</a>
+                                    <ul>
+                                        <%ArrayList basortusualtkateler = new AltkategoriDao().tumaltkategoriler(9);
+                                          foreach (Altkategori gelenaltkateler in basortusualtkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container"><div class="dd-longad-wrapper"><img src="img/dropdownads/dd-reklamver-uzun.png" /></div></div>
+							    <div class="column-list-container"><div class="dd-longad-wrapper"><img src="img/dropdownads/dd-reklamver-uzun.png" /></div></div>
+							    <!--|-->
+							    </div></div>
+						    </li>
+						    <li class="navmenu-li"><a href="ProductSale.aspx?anakateno=10" class="nav-menu-links">Ayakkabı</a>
+							    <div class="nav-dropdown"><div class="nav-dropdown-align">
+							    <!--|-->
+							    <div class="column-list-container">
+                                    <ul>
+                                        <asp:Literal ID="AyakkabiListe" runat="server"></asp:Literal>
+                                    </ul>
+                                </div>
+							    <div class="column-list-container">
+                                    <ul>
+                                        <asp:Literal ID="AyakkabiListe2" runat="server"></asp:Literal>
+                                    </ul>
+                                </div>
+							    <div class="column-list-container"><div class="dd-ad-wrapper-top"><img src="img/dropdownads/dd-reklamver.png" /></div><div class="dd-ad-wrapper-bottom"><img src="img/dropdownads/dd-reklamver.png" /></div></div>
+							    <div class="column-list-container"><div class="dd-ad-wrapper-top"><img src="img/dropdownads/dd-reklamver.png" /></div><div class="dd-ad-wrapper-bottom"><img src="img/dropdownads/dd-reklamver.png" /></div></div>
+							    <!--|-->
+							    </div></div>
+						    </li>
+						    <li class="navmenu-li"><a href="ProductSale.aspx?anakateno=11" class="nav-menu-links">Aksesuar</a>
+							    <div class="nav-dropdown"><div class="nav-dropdown-align">
+							    <!--|-->
+							    <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=11" class="column-list-headers">Aksesuarlar</a>
+                                    <ul>
+                                        <%ArrayList aksesuarlaraltkateler = new AltkategoriDao().tumaltkategoriler(11);
+                                          foreach (Altkategori gelenaltkateler in aksesuarlaraltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=12" class="column-list-headers">Çantalar</a>
+                                    <ul>
+                                        <%ArrayList cantalaraltkateler = new AltkategoriDao().tumaltkategoriler(12);
+                                          foreach (Altkategori gelenaltkateler in cantalaraltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container"><div class="dd-ad-wrapper-top"><img src="img/dropdownads/dd-reklamver.png" /></div><div class="dd-ad-wrapper-bottom"><img src="img/dropdownads/dd-reklamver.png" /></div></div>
+							    <div class="column-list-container"><div class="dd-longad-wrapper"><img src="img/dropdownads/dd-reklamver-uzun.png" /></div></div>
+							    <!--|-->
+							    </div></div>
+						    </li>
+						    <li class="navmenu-li"><a href="ProductSale.aspx?anakateno=13" class="nav-menu-links">Kozmetik</a>
+							    <div class="nav-dropdown"><div class="nav-dropdown-align">
+							    <!--|-->
+							    <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=13" class="column-list-headers">Makyaj</a>
+                                    <ul>
+                                        <%ArrayList makyajaltkateler = new AltkategoriDao().tumaltkategoriler(13);
+                                          foreach (Altkategori gelenaltkateler in makyajaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                    <a href="ProductSale.aspx?anakateno=14" class="column-list-headers">Parfüm & Deodorant</a>
+                                    <ul>
+                                        <%ArrayList parfumdeodorantaltkateler = new AltkategoriDao().tumaltkategoriler(14);
+                                          foreach (Altkategori gelenaltkateler in parfumdeodorantaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=15" class="column-list-headers">Saç Bakımı</a>
+                                    <ul>
+                                        <%ArrayList sacbakimaltkateler = new AltkategoriDao().tumaltkategoriler(15);
+                                          foreach (Altkategori gelenaltkateler in sacbakimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                    <a href="ProductSale.aspx?anakateno=16" class="column-list-headers">Epilasyon & Tıraş</a>
+                                    <ul>
+                                        <%ArrayList epilasyontirasaltkateler = new AltkategoriDao().tumaltkategoriler(16);
+                                          foreach (Altkategori gelenaltkateler in epilasyontirasaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container">
+                                    <a href="ProductSale.aspx?anakateno=17" class="column-list-headers">Cilt bakımı</a>
+                                    <ul>
+                                        <%ArrayList ciltbakimaltkateler = new AltkategoriDao().tumaltkategoriler(17);
+                                          foreach (Altkategori gelenaltkateler in ciltbakimaltkateler)
+                                          {%>
+                                            <li><a href="ProductSale.aspx?altkateno=<%Response.Write(gelenaltkateler.Altkateid);%>&filtretip=<%Response.Write(gelenaltkateler.Filtretip);%>"><% Response.Write(gelenaltkateler.Altkateadi); %></a></li>
+                                        <%}%>
+                                    </ul>
+                                </div>
+                                <div class="column-list-container"><div class="dd-longad-wrapper"><img src="img/dropdownads/dd-reklamver-uzun.png" /></div></div>
+							    <!--|-->
+							    </div></div>
+						    </li>
+					    </ul>
+				    </div>
+			    </nav>
+		    </div>
+            <label class="switch"><input checked="true" type="checkbox" id="header_onoff" />
+                <div class="slider"></div>
+            </label>
+	    </header>
+        <main class="main-layout layout-container-foreach">
+		    <div class="main-layout-align">
+			    <div class="middle-container-full">
+                    <asp:ContentPlaceHolder id="ContentPlaceHolder" runat="server">
+                    
+                    </asp:ContentPlaceHolder>
+			    </div>
+		    </div>
+	    </main>
+        <footer class="layout-container-foreach">
+		    <div class="footer-sub-container">
+			    <div id="to-top-container"><i onclick="topFunction()" title="Yukarı çık" class="fa fa-arrow-circle-up" id="up-icon" aria-hidden="true"></i></div>
+			    <div class="row-no-gutters" id="top-footer">
+				    <div class="col-xs-12 col-sm-6 col-md-3 footer-row-align" >
+					    <div class="col-heading">İLETİŞİM</div>
+					    <ul class="footer-iletisim-align">
+						    <li>
+						    <i class="fa fa-phone" aria-hidden="true"></i><a href="#">0-(xxx)-xxx-xx-xx</a>
+						    </li>
+						    <li>
+						    <i class="fa fa-mobile" aria-hidden="true"></i><a href="#">SMS Mesaj</a>
+						    </li>
+						    <li>
+						    <i class="fa fa-map-marker" aria-hidden="true"></i><a href="#">Adres</a>
+						    </li> 
+						    <li>
+						    <i class="fa fa-envelope-square" aria-hidden="true"></i><a href="mailto:irsat000@gmail.com">Mail gönder</a>  
+						    </li> 
+					    </ul>
+				    </div>
+				    <div class="col-xs-12 col-sm-6 col-md-3 footer-row-align" >
+					    <div class="col-heading">Hakkımızda</div>
+					    <ul>
+						    <li><a href="#">Tarihçe</a></li>
+						    <li><a href="#">Yöneticiler</a></li>
+						    <li><a href="#">Ne amaçlıyoruz</a></li>
+						    <li><a href="#">Bize ulaşın</a></li>
+					    </ul>
+				    </div>
+				    <div class="col-xs-12 col-sm-6 col-md-3 footer-row-align" >
+					    <div class="col-heading">İŞ GÖRÜŞELİM</div>
+					    <ul>
+						    <li><a href="#">Satış yap</a></li>
+						    <li><a href="#">Reklam ver</a></li>
+						    <li><a href="#">Satış ortaklığı</a></li>
+						    <li><a href="#">İş başvurusu</a></li>
+					    </ul>
+				    </div>
+				    <div class="col-xs-12 col-sm-6 col-md-3 footer-row-align" >
+					    <div class="col-heading">Subheading</div>
+					    <ul>
+						    <li><a href="#">Link to page</a></li>
+						    <li><a href="#">Link to page</a></li>
+						    <li><a href="#">Link to page</a></li>
+						    <li><a href="#">Link to page</a></li>
+					    </ul>
+				    </div>
+			    </div>
+			    <div class="row-no-gutters" id="bottom-footer">
+				    <div class="bottom-footer-align">
+					    <div class="footer-bottom-align">
+						    <ul class="vertical-links small">
+							    <li><a href="#">Gizlilik</a></li>
+							    <li><a href="#">Şartlar & Koşullar</a></li>
+							    <li><a href="#">İletişim</a></li>
+							    <li><a href="#">Link4</a></li>
+						    </ul>
+					    </div>
+					    <div class="footer-bottom-align">
+						    <ul>
+							    <li class="small">Telif hakkı © 2019 <a href="#" style="font-weight:500;">Modanisa</a>. Tüm hakları saklıdır.</li>
+						    </ul>
+					    </div>
+				    </div>
+			    </div>
+		    </div>
+	    </footer>
+        <script type="text/javascript">
+            if ($('#login-btn-modal').length > 0) {
+                document.getElementById("login-btn-modal").onclick = function () { open_login_modal() };
+            }
+            if ($('#register-btn-modal').length > 0) {
+                document.getElementById("register-btn-modal").onclick = function () { open_register_modal() };
+            }
+            function open_login_modal() {
+                document.getElementById('login-modal').style.display = 'block';
+            }
+            function open_register_modal() {
+                document.getElementById('register-modal').style.display = 'block';
+            }
+        </script>
+        <script type="text/javascript">
+            document.querySelector('.searchbox [type="reset"]').addEventListener('click', function () { this.parentNode.querySelector('input').focus(); });
+        </script>
+        <script type="text/javascript">
+            /*var modal1 = document.getElementById('login-modal');
+            var modal2 = document.getElementById('register-modal');
+            window.onclick = function (event) {
+                if (event.target == modal1) {
+                    modal1.style.display = "none";
+                }
+                if (event.target == modal2) {
+                    modal2.style.display = "none";
+                }
+            }*/
+        </script>
+        <script type="text/javascript">
+            window.onscroll = function () { headerscroll(), scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+                    document.getElementById("to-top-container").style.display = "block";
+                } else {
+                    document.getElementById("to-top-container").style.display = "none";
+                }
+            }
+            // sayfanın en üstüne gönderir
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
+            var header = document.getElementById("header-itself");
+            var sticky = header.offsetTop;
+
+            function headerscroll() {
+                if (window.pageYOffset > sticky && $("#header_onoff").prop("checked") == true) {
+                    header.classList.add("sticky-header");
+                } else {
+                    header.classList.remove("sticky-header");
+                }
+            }
+            $('#header_onoff').change(function () {
+                if (!this.checked) {
+                    header.classList.remove("sticky-header");
+                }
+            });
+
+        </script>
+        <!--Burası şablonda değişecek yerler-->
+        <asp:ContentPlaceHolder ID="BottomJSPlaceHolder" runat="server">
+        </asp:ContentPlaceHolder>
+        <!---->
+    </div>
+    </form>
+</body>
+</html>
